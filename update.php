@@ -21,9 +21,6 @@ if (isset($_GET['id'])) {
 	$stmt = $pdo->prepare('SELECT * FROM students WHERE id = ?');
     $stmt->execute([$_GET['id']]);
     $student = $stmt->fetch(PDO::FETCH_ASSOC);
-	if (!$student) {
-        exit('L\'étudiant n\'existe pas avec cet ID !');
-    }
 } else {
 		exit('Pas d\'ID spécifié');
 }
@@ -40,15 +37,15 @@ if (isset($_GET['id'])) {
 
 	<form action="update.php?id=<?php echo $student["id"] ?>" method="POST" style="display:block">
         <label for="name">First Name</label>
-        <input type="text" name="first_name" value="<?=$student['first_name']?>" id="first_name">
+        <input type="text" name="first_name" value="<?php echo $student['first_name']?>" id="first_name">
 		<label for="name">Last Name</label>
-        <input type="text" name="last_name" value="<?=$student['last_name']?>" id="last_name">
+        <input type="text" name="last_name" value="<?php echo $student['last_name']?>" id="last_name">
         <label for="email">Email</label>
-		<input type="text" name="email" value="<?=$student['email']?>" id="email">
+		<input type="text" name="email" value="<?php echo $student['email']?>" id="email">
         <label for="phone">Phone</label>
-        <input type="text" name="phone" value="<?=$student['phone']?>" id="phone">
+        <input type="text" name="phone" value="<?php echo $student['phone']?>" id="phone">
         <label for="title">Age</label>
-		<input type="text" name="age" value="<?=$student['age']?>" id="age">
+		<input type="text" name="age" value="<?php echo $student['age']?>" id="age">
         <input type="submit" value="Update">
 	</form>
 
