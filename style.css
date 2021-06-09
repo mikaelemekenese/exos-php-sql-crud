@@ -67,7 +67,7 @@ footer p {
   border-bottom: 1px solid #ebebeb;
   color: #666666;
 }
-.read .create-contact {
+.read .create-student {
   display: inline-block;
   text-decoration: none;
   background-color: #38b673;
@@ -77,7 +77,7 @@ footer p {
   padding: 10px 15px;
   margin: 15px 0;
 }
-.read .create-contact:hover {
+.read .create-student:hover {
   background-color: #32a367;
 }
 .read .pagination {

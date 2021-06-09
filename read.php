@@ -13,9 +13,8 @@ $students = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="content read">
 	<h2>Liste des Etudiants</h2>
-	<a href="create.php" class="create-contact">Ajouter</a>
-	<table>
 
+	<table>
         <thead>
             <tr>
                 <td>#</td>
@@ -30,15 +29,15 @@ $students = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
         <tbody>
             <?php foreach ($students as $student): ?>
             <tr>
-                <td><?=$student["id"]?></td>
-                <td><?=$student["first_name"]?></td>
-                <td><?=$student["last_name"]?></td>
-                <td><?=$student["email"]?></td>
-                <td><?=chunk_split($student["phone"],2,"&nbsp;");?></td>
-                <td><?=$student["age"]?></td>
+                <td><?php echo $student["id"]?></td>
+                <td><?php echo $student["first_name"]?></td>
+                <td><?php echo $student["last_name"]?></td>
+                <td><?php echo $student["email"]?></td>
+                <td><?php echo chunk_split($student["phone"],2,"&nbsp;")?></td>
+                <td><?php echo $student["age"]?></td>
                 <td class="actions">
-                    <a href="update.php?id=1" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                    <a href="delete.php?id=2" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                    <a href="update.php?id=<?php echo $student["id"]?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                    <a href="delete.php?id=<?php echo $student["id"]?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                 </td>
             </tr>
             <?php endforeach ?>

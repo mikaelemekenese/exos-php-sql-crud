@@ -2,58 +2,59 @@
 include 'functions_custom.php';
 
 $pdo = pdo_connect_mysql();
+$msg = '';
 
-$pdo_stmt = $pdo->prepare('	UPDATE students
-							SET	id = :id,
-								first_name = :first_name,
-								last_name = :last_name,
-								email = :email,
-								phone = :phone,
-								age = :age,
-							WHERE id= :id');
+if (isset($_GET['id'])) {
+    if (!empty($_POST)) {
+		$id = isset($_POST['id']) ? $_POST['id'] : NULL;
+		$first_name = isset($_POST['first_name']) ? $_POST['first_name'] : '';
+		$last_name = isset($_POST['last_name']) ? $_POST['last_name'] : '';
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+        $age = isset($_POST['age']) ? $_POST['age'] : '';
 
-$pdo_stmt->execute(array(	':first_name' => $_POST['first_name'],
-							':last_name' => $_POST['last_name'],
-							':email' => $_POST['email'],
-							':phone' => $_POST['phone'],
-							':age' => $_POST['age']));
+		$stmt = $pdo->prepare('UPDATE students SET id = ?, first_name = ?, last_name = ?, email = ?, phone = ?, age = ? WHERE id = ?');
+        $stmt->execute([$id, $first_name, $last_name, $email, $phone, $age, $_GET['id']]);
+		$msg = 'Edité avec succès !';
+    }
 
+	$stmt = $pdo->prepare('SELECT * FROM students WHERE id = ?');
+    $stmt->execute([$_GET['id']]);
+    $student = $stmt->fetch(PDO::FETCH_ASSOC);
+	if (!$student) {
+        exit('L\'étudiant n\'existe pas avec cet ID !');
+    }
+} else {
+		exit('Pas d\'ID spécifié');
+}
 ?>
 
-<?php echo template_header('Update');
+<?php echo template_header('Read');
 /**
  * ajouter le php necessaire
  */
 ?>
 
-<div class="container content update">
-	<h2>Update</h2>
+<div class="content update">
+	<h2>Update Student #<?php echo $student['id'] ?></h2>
 
-	<form action="read.php" method="POST" style="display:block">
-		<div class="form-group">
-			<label for="prenom">Prénom : </label>
-			<input type="text" class="form-control" id="prenom" name="prenom" />
-		</div>
-		<div class="form-group">
-			<label for="nom">Nom : </label>
-			<input type="text" class="form-control" id="nom" name="nom" />
-		</div>
-		<div class="form-group">
-			<label for="email">Email : </label>
-			<input type="email" class="form-control" id="email" name="email" />
-		</div>
-		<div class="form-group">
-			<label for="telephone">Téléphone : </label>
-			<input type="tel" class="form-control" id="telephone" name="telephone" />
-		</div>
-		<div class="form-group">
-			<label for="age">Age : </label>
-			<input type="number" class="form-control" id="age" name="age" />
-		</div><br>
-		<div class="form-group">
-			<input type="submit" /></input>
-		</div>
+	<form action="update.php?id=<?php echo $student["id"] ?>" method="POST" style="display:block">
+        <label for="name">First Name</label>
+        <input type="text" name="first_name" value="<?=$student['first_name']?>" id="first_name">
+		<label for="name">Last Name</label>
+        <input type="text" name="last_name" value="<?=$student['last_name']?>" id="last_name">
+        <label for="email">Email</label>
+		<input type="text" name="email" value="<?=$student['email']?>" id="email">
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" value="<?=$student['phone']?>" id="phone">
+        <label for="title">Age</label>
+		<input type="text" name="age" value="<?=$student['age']?>" id="age">
+        <input type="submit" value="Update">
 	</form>
+
+	<?php if ($msg): ?>
+    <p><?=$msg?></p>
+    <?php endif; ?>
 </div>
 
 <?php echo template_footer();
