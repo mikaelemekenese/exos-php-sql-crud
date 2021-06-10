@@ -26,16 +26,16 @@ function template_header($title) {
     <head>
       <meta charset="utf-8">
       <title>$title</title>
-      <link href="style.css" rel="stylesheet" type="text/css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
       <nav class="navtop">
         <div>
-          <h1>CCI</h1>
-              <a href="index.php"><i class="fas fa-home"></i>Accueil</a>
-          <a href="read.php"><i class="fas fa-address-book"></i>Liste</a>
+          <h1></h1>
+          <a href="index.php"><i class="fas fa-home"></i>Home</a>
+          <a href="read.php"><i class="fas fa-address-book"></i>List</a>
         </div>
       </nav>
   EOT;
@@ -49,7 +49,7 @@ function template_footer() {
   $year = date("Y");
   echo <<<EOT
         <footer>
-          <p>©$year CCI.NC</p>
+          <p>©$year</p>
         </footer>
       </body>
   </html>

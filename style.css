@@ -80,6 +80,9 @@ footer p {
 .read .create-student:hover {
   background-color: #32a367;
 }
+.create form input {
+  width: 400px;
+}
 .read .pagination {
   display: flex;
   justify-content: flex-end;
@@ -156,6 +159,20 @@ footer p {
 .read table tbody tr td.actions .edit:hover {
   background-color: #319ca3;
 }
+.read .add {
+  display: inline-flex;
+  text-align: flex-end;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 12px;
+  background-color: #32a367;
+  margin-right: 8px;
+}
+.read > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .update form {
   padding: 15px 0;
   display: flex;
@@ -173,20 +190,6 @@ footer p {
   margin-right: 25px;
   margin-bottom: 15px;
   border: 1px solid #cccccc;
-}
-.update form input[type='submit'] {
-  display: block;
-  background-color: #38b673;
-  border: 0;
-  font-weight: bold;
-  font-size: 14px;
-  color: #ffffff;
-  cursor: pointer;
-  width: 200px;
-  margin-top: 15px;
-}
-.update form input[type='submit']:hover {
-  background-color: #32a367;
 }
 .delete .yesno {
   display: flex;

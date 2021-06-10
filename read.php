@@ -12,16 +12,18 @@ $students = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php echo template_header('Read'); ?>
 
 <div class="content read">
-	<h2>Liste des Etudiants</h2>
+
+	<div><h2>Students List</h2> 
+    <span><a href="create.php" class="add"><i class="fas fa-plus-square fa-xs"></i></a></span></div>
 
 	<table>
         <thead>
             <tr>
                 <td>#</td>
-                <td>Prénom</td>
-                <td>Nom</td>
+                <td>First Name</td>
+                <td>Last Name</td>
                 <td>Email</td>
-                <td>Téléphone</td>
+                <td>Phone Number</td>
                 <td>Age</td>
                 <td></td>
             </tr>
