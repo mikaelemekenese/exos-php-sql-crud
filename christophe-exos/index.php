@@ -45,10 +45,15 @@ $shows = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // 
 
-$pdo_stmt = $pdo->prepare('SELECT * FROM clients');
+$pdo_stmt = $pdo->prepare(' SELECT * FROM clients
+                            LEFT JOIN cards ON clients.cardNumber = cards.cardNumber
+                            LEFT JOIN cardtypes ON cards.cardTypesId = cardtypes.id');
+
 $pdo_stmt->execute();
 
 $clients5 = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
+$cards = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
+$cardtypes = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <html>
@@ -65,7 +70,8 @@ $clients5 = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
             h3 { color: orange; }
             .table-sm td { padding-left: 40px; padding-right: 40px; }
             thead > tr > td { font-weight: bold; color: green; font-size: 1.2rem; }
-            b { color: blue; }
+            b { color: blue; font-weight: normal; }
+            p { margin-bottom: 0; }
         </style>
     </head>
 
@@ -223,22 +229,34 @@ $clients5 = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php foreach ($clients5 as $client): ?>
 
-                <?php 
-                    if(preg_match("/(2198|2377)/", $client["cardNumber"])) {
-                        $card = "<b style='color:goldenrod'>OUI</b>";
-                        $cardnum = $client["cardNumber"];
-                    } else {
-                        $card = "Non";
-                        $cardnum = "&#10060";
-                    }
-                ?>
-
                 <span style="border:1px solid lightgrey;padding:10px;">
                     <p><b>Nom : </b><?php echo $client["lastName"]?></p>
                     <p><b>Prénom : </b><?php echo $client["firstName"]?></p>
                     <p><b>Date de naissance : </b><?php echo $client["birthDate"]?></p>
-                    <p><b>Carte de fidelité : </b><?php echo $card ?></p>
-                    <p><b>Numéro de la carte : </b><?php echo $cardnum ?></p>
+                    <p><b>Carte de fidelité : </b>
+                    
+                        <?php
+                        
+                        if ($client["cardTypesId"] == 1) :
+                            echo "Oui"; 
+                        else :
+                            echo "&#10060"; 
+                        
+                        endif; ?>
+
+                    </p>
+
+                    <p><b>Numéro de la carte : </b>
+                    
+                    <?php 
+                    
+                        if ($client["cardNumber"] !== NULL && $client["cardTypesId"] == 1) : 
+                            echo $client["cardNumber"];
+                        else :
+                            echo "&#10060";
+                        endif; ?>
+
+                    </p>
                 </span>
                 <?php endforeach ?>
             </div>
