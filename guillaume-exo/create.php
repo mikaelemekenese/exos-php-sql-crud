@@ -5,8 +5,6 @@
 
 	if (!empty($_POST)) {
 
-		$id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
-
 		$first_name = isset($_POST['first_name']) ? htmlspecialchars($_POST['first_name']) : '';
 		$last_name = isset($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : '';
 		$email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
@@ -16,7 +14,7 @@
 		$pdo_stmt = $pdo->prepare('	INSERT INTO students
 									VALUES 	(?, ?, ?, ?, ?, ?)');
 									
-		$pdo_stmt->execute([$id, $first_name, $last_name, $email, $phone, $age]);
+		$pdo_stmt->execute([$_POST['id'], $first_name, $last_name, $email, $phone, $age]);
 	}
 ?>
 
@@ -47,7 +45,7 @@
                 <input type="text" class="form-control" name="age" id="age">
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-info" value="Add new entry">
+            <input type="submit" class="btn btn-info" value="Add new entry">
             </div>
         </form>
     </div>

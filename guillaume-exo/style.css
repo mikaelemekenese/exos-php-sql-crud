@@ -194,7 +194,7 @@ footer p {
 .delete .yesno {
   display: flex;
 }
-.delete .yesno a {
+/*.delete .yesno a {
   display: inline-block;
   text-decoration: none;
   background-color: #38b673;
@@ -205,4 +205,4 @@ footer p {
 }
 .delete .yesno a:hover {
   background-color: #32a367;
-}
+} */
