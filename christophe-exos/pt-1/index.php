@@ -261,7 +261,5 @@ $cardtypes = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach ?>
             </div>
         </div><br>
-
-        <br><div class="container"><h1>Partie 2 - Exercices SQL/PDO</h1></div><br>
     </body>
 </html>

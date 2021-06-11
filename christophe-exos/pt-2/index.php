@@ -18,46 +18,49 @@ $patients = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
         <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap" rel="stylesheet">
 
         <style>
-
+            h1 { color: red; }
+            h3 { color: green; }
         </style>
     </head>
 
     <body>
-        <div class="content read">
+        <div class="container">
+            <br><div class="container"><h1>Partie 2 - Exercices SQL/PDO</h1></div><br>
 
-        <div><h2>Students List</h2> 
-        <button href="ajout-patient.php" type="button" class="btn btn-primary">Ajouter un patient</button>
+            <br><div style="display:flex; justify-content:space-between; align-items: center;"><h3>Liste des patients</h3> 
+            <button href="ajout-patient.php" type="button" class="btn btn-primary">Ajouter un patient</button></div><br>
+        </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <td>#</td>
-                    <td>Last Name</td>
-                    <td>First Name</td>
-                    <td>Birthdate</td>
-                    <td>Phone Number</td>
-                    <td>Email</td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($patients as $patient): ?>
-                <tr>
-                    <td><?php echo $patient["id"]?></td>
-                    <td><?php echo $patient["lastname"]?></td>
-                    <td><?php echo $patient["firstname"]?></td>
-                    <td><?php echo $patient["birthdate"]?></td>
-                    <td><?php echo $patient["phone"]?></td>
-                    <td><?php echo $patient["mail"]?></td>
-                    <td class="actions">
-                        <a href="update.php?id=<?php echo $patient["id"]?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                        <a href="delete.php?id=<?php echo $patient["id"]?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
-                    </td>
-                </tr>
-                <?php endforeach ?>
-            </tbody>
-
-        </table>
+        <div class="container">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <td scope="col">#</td>
+                        <td scope="col">Last Name</td>  
+                        <td scope="col">First Name</td>
+                        <td scope="col">Birthdate</td>
+                        <td scope="col">Phone Number</td>
+                        <td scope="col">Email</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($patients as $patient): ?>
+                    <tr>
+                        <td><?php echo $patient["id"]?></td>
+                        <td><?php echo $patient["lastname"]?></td>
+                        <td><?php echo $patient["firstname"]?></td>
+                        <td><?php echo $patient["birthdate"]?></td>
+                        <td><?php echo $patient["phone"]?></td>
+                        <td><?php echo $patient["mail"]?></td>
+                        <td class="actions">
+                            <a href="update.php?id=<?php echo $patient["id"]?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                            <a href="delete.php?id=<?php echo $patient["id"]?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                        </td>
+                    </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
         </div>
 
     </body>
