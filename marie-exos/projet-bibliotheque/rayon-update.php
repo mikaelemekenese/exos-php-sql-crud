@@ -9,7 +9,7 @@
             $id = $_GET['id'];
 
             $nom = isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : '';
-		    $reference = isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : '';
+		    $reference = isset($_POST['reference']) ? htmlspecialchars($_POST['reference']) : '';
 
             $pdo_stmt = $pdo->prepare('UPDATE rayon SET id = ?, nom = ?, reference = ? WHERE id = ?');
             $pdo_stmt->execute([$id, $nom, $reference, $_GET['id']]);

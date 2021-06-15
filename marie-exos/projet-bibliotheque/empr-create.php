@@ -28,7 +28,7 @@
 <?php echo template_header('Create'); ?>
 
 	<div class="content create">
-        <h2>Ajouter un nouvel ouvrage :</h2>
+        <h2>Ajouter un nouvel emprunt :</h2>
 
         <form action="empr-create.php" method="POST">
             <div class="form-group">

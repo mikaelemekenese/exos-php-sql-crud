@@ -70,6 +70,25 @@ footer p {
   border-bottom: 1px solid #ebebeb;
   color: #666666;
 }
+.home-buttons {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  text-align: center;
+  justify-content: center;
+}
+.home-buttons a {
+  width: 90%;
+  height: 100px;
+  display: grid;
+  align-items: center;
+  margin: auto;
+}
+.home-buttons > div > i {
+  color: goldenrod;
+}
+.home-buttons > div > i > h3 {
+  color: black;
+}
 .read .create-livre {
   display: inline-block;
   text-decoration: none;
