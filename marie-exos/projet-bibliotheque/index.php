@@ -8,7 +8,7 @@ include 'functions_custom.php';
 
 <div class="container">
 	<br><h1>Accueil</h1><br>
-	<h2>Bibliothèque</h2>
+	<h3>Bibliothèque</h3>
 </div>
 
 <?php echo template_footer(); ?>

@@ -3,7 +3,7 @@ include 'functions_custom.php';
 
 $pdo = pdo_connect_mysql();
 
-$pdo_stmt = $pdo->prepare('SELECT * FROM livre');
+$pdo_stmt = $pdo->prepare('SELECT * FROM livre LEFT JOIN rayon ON livre.id_rayon = rayon.id');
 $pdo_stmt->execute();
 
 $livres = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -14,7 +14,7 @@ $livres = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="content read">
 
 	<div><h2>Liste des ouvrages de la bibliotheque</h2> 
-    <span><a href="create.php" class="add"><i class="fas fa-plus-square fa-xs"></i></a></span></div>
+    <span><a href="livre-create.php" class="add"><i class="fas fa-plus-square fa-xs"></i></a></span></div>
 
 	<table class="table">
         <thead>
@@ -40,23 +40,10 @@ $livres = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
                         endif;
                     ?>
                 </td>
-                <td>
-                    <?php 
-                        switch ($livre["id_rayon"]) {
-                            case 1 : echo "Fantastique"; break;
-                            case 2 : echo "Horreur"; break;
-                            case 3 : echo "Histoire"; break;
-                            case 4 : echo "Sciences"; break;
-                            case 5 : echo "Sport"; break;
-                            case 6 : echo "Voyage"; break;
-                            case 7 : echo "Manga"; break;
-                            default : echo "Non classé"; 
-                        };
-                    ?>
-                </td>
+                <td><?php echo $livre["nom"] ?></td>
                 <td class="actions">
-                    <a href="update.php?id=<?php echo $livre["id"] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                    <a href="delete.php?id=<?php echo $livre["id"] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                    <a href="livre-update.php?id=<?php echo $livre["id"] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                    <a href="livre-delete.php?id=<?php echo $livre["id"] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                 </td>
             </tr>
             <?php endforeach; ?>
