@@ -27,7 +27,7 @@
 	}
 ?>
 
-<?php echo template_header('Delete')?>
+<?php echo template_header('Livre/Delete')?>
 
 	<div class="container">
 		<br><h2>Supprimer le livre #<?php echo $livre['id'] ?></h2><br>

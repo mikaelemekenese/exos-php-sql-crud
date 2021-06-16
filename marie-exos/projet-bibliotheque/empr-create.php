@@ -34,10 +34,32 @@
             <div class="form-group">
                 <label for="id_livre">Livre</label>
                 <input type="text" class="form-control" name="id_livre" id="id_livre">
+                <!-- <select class="custom-select" style="width:400px;display:block;">
+                    <?php
+                        $pdo_stmt = $pdo->prepare('SELECT livre.id, livre.titre, livre.auteur FROM livre');
+
+                        $pdo_stmt->execute();
+                        while ($livres = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC))
+                            foreach ($livres as $livre) :
+                                echo "<option value=\"".$livre['id']."\">".$livre['id']." - &laquo; ".$livre['titre']." &raquo; &#124; ".$livre['auteur']."</option>";
+                            endforeach;
+                    ?>
+                </select> -->
             </div>
             <div class="form-group">
                 <label for="id_adherent">Adhérent</label>
                 <input type="text" class="form-control" name="id_adherent" id="id_adherent">
+                <!-- <select class="custom-select" style="width:400px;display:block;">
+                    <?php
+                        $pdo_stmt = $pdo->prepare('SELECT adherent.id, adherent.prenom, adherent.nom FROM adherent');
+
+                        $pdo_stmt->execute();
+                        while ($adherents = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC))
+                            foreach ($adherents as $adherent) :
+                                echo "<option value=\"".$adherent['id']."\">".$adherent['id']." - ".$adherent['prenom']." ".$adherent['nom']."</option>";
+                            endforeach;
+                    ?>
+                </select> -->
             </div>
             <div class="form-group">
                 <label for="date_emprunt">Date d'emprunt</label>

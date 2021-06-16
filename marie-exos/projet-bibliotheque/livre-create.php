@@ -25,7 +25,7 @@
 	}
 ?>
 
-<?php echo template_header('Create'); ?>
+<?php echo template_header('Livre/Create'); ?>
 
 	<div class="content create">
         <h2>Ajouter un nouvel ouvrage :</h2>
@@ -46,6 +46,17 @@
             <div class="form-group">
                 <label for="phone">Rayon</label>
                 <input type="text" class="form-control" name="id_rayon" id="id_rayon">
+                <!-- <select class="custom-select" style="width:400px;display:block;">
+                    <?php
+                        $pdo_stmt = $pdo->prepare('SELECT rayon.id, rayon.nom FROM rayon');
+
+                        $pdo_stmt->execute();
+                        while ($rayons = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC))
+                            foreach ($rayons as $rayon) :
+                                echo "<option value=\"".$rayon['id']."\">".$rayon['id']." - ".$rayon['nom']."</option>";
+                            endforeach;
+                    ?>
+                </select> -->
             </div>
             <div class="form-group">
             <input type="submit" class="btn btn-info" value="Ajouter">

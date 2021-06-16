@@ -33,12 +33,12 @@
     }
 ?>
 
-<?php echo template_header('Update'); ?>
+<?php echo template_header('Livre/Update'); ?>
 
     <div class="content update">
         <h2>Modifier les informations du livre #<?php echo $livre['id'] ?> ("<?php echo $livre['titre'] ?>" de <?php echo $livre['auteur']?>) :</h2>
 
-        <form action="livre-update.php?id=<?php echo $livre["id"] ?>" method="POST">
+        <form action="livre-update.php?id=<?php echo $livre["id"] ?>" method="POST" style="display:block">
             <div class="form-group">
                 <label for="name">Titre</label>
                 <input type="text" class="form-control" name="titre" value="<?php echo $livre['titre'] ?>" id="titre">
@@ -54,6 +54,18 @@
             <div class="form-group">
                 <label for="phone">Rayon</label>
                 <input type="text" class="form-control" name="id_rayon" value="<?php echo $livre['id_rayon'] ?>" id="id_rayon">
+                <!-- <select class="custom-select" name="rayon" style="width:400px;display:block;">
+                    <?php
+                        $sql = "SELECT rayon.id, rayon.nom FROM rayon";
+                        if ($pdo_stmt = $pdo->query($sql)) {
+                            while ($rayons = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC)) {
+                                foreach ($rayons as $rayon) :
+                                    echo "<option class=\"form-control\" value=\"".$livre['id_rayon']."\">".$rayon['id']." - ".$rayon['nom']."</option>";
+                                endforeach;
+                            }
+                        }
+                    ?>
+                </select> -->
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Update">
