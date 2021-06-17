@@ -25,7 +25,7 @@
 <?php echo template_header('Delete')?>
 
 	<div class="container">
-		<br><h2>Supprimer le rayon #<?php echo $adherent['id'] ?></h2><br>
+		<br><h2>Supprimer le rayon #<?php echo $rayon['id'] ?></h2><br>
 
 		<p>Souhaitez-vous vraiment supprimer le rayon #<?php echo $rayon['id'] ?> (<?php echo $rayon['nom'] ?>) ?</p><br>
 

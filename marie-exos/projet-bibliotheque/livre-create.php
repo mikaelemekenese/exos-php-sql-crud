@@ -14,7 +14,7 @@
 		$id_rayon = isset($_POST['id_rayon']) ? htmlspecialchars($_POST['id_rayon']) : '';
 
 		$pdo_stmt = $pdo->prepare('	INSERT INTO livre
-									VALUES 	(:id, :titre, :auteur, :disponible, :id_rayon)');
+									VALUES 	(?, ?, ?, ?, ?)');
 									
 		$pdo_stmt->execute([$id, $titre, $auteur, $disponible, $id_rayon]);
 

@@ -3,7 +3,15 @@
 
     $pdo = pdo_connect_mysql();
 
-    $pdo_stmt = $pdo->prepare('SELECT livre.id, livre.titre, livre.auteur, livre.disponible, rayon.nom FROM livre LEFT JOIN rayon ON livre.id_rayon = rayon.id');
+    $pdo_stmt = $pdo->prepare(' SELECT  livre.id, 
+                                        livre.titre, 
+                                        livre.auteur, 
+                                        livre.disponible, 
+                                        rayon.nom 
+                                FROM    livre 
+                                LEFT JOIN rayon 
+                                ON      livre.id_rayon = rayon.id');
+                                
     $pdo_stmt->execute();
 
     $livres = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);

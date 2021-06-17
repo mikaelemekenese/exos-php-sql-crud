@@ -13,7 +13,15 @@
             $date_retourmax = isset($_POST['date_retourmax']) ? htmlspecialchars($_POST['date_retourmax']) : date('j F Y');
             $date_retour = isset($_POST['date_retour']) ? htmlspecialchars($_POST['date_retour']) : date('j F Y');
 
-            $pdo_stmt = $pdo->prepare('UPDATE emprunt SET id = ?, id_livre = ?, id_adherent = ?, date_emprunt = ?, date_retourmax = ?, date_retour = ? WHERE id = ?');
+            $pdo_stmt = $pdo->prepare(' UPDATE emprunt 
+                                        SET     id = ?,
+                                                id_livre = ?,
+                                                id_adherent = ?,
+                                                date_emprunt = ?,
+                                                date_retourmax = ?,
+                                                date_retour = ?
+                                        WHERE   id = ?');
+                                        
             $pdo_stmt->execute([$id, $id_livre, $id_adherent, $date_emprunt, $date_retourmax, $date_retour, $id]);
             $msg = 'Edité avec succès !';
 

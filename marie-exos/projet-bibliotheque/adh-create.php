@@ -10,11 +10,11 @@
 
 		$nom = isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : '';
 		$prenom = isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : '';
-		$livres_empr = isset($_POST['nbr_livresempr']) ? htmlspecialchars($_POST['nbr_livresempr']) : '';
+		$nbr_livresempr = isset($_POST['nbr_livresempr']) ? htmlspecialchars($_POST['nbr_livresempr']) : '';
 
 		$pdo_stmt = $pdo->prepare('	INSERT INTO adherent VALUES (?, ?, ?, ?)');
 									
-		$pdo_stmt->execute([$id, $nom, $prenom, $livres_empr]);
+		$pdo_stmt->execute([$id, $nom, $prenom, $nbr_livresempr]);
         $msg = 'Ajouté avec succès !';
 
         header('Location: adh-read.php');
@@ -22,7 +22,7 @@
 	}
 ?>
 
-<?php echo template_header('Create'); ?>
+<?php echo template_header('Adh/Create'); ?>
 
 	<div class="content create">
         <h2>Ajouter un nouvel adhérent :</h2>
@@ -37,8 +37,8 @@
                 <input type="text" class="form-control" name="prenom" id="prenom">
             </div>
             <div class="form-group">
-                <label for="livres_empr">Nombre de livres empruntés</label>
-                <input type="text" class="form-control" name="livres_empr" id="livres_empr">
+                <label for="nbr_livresempr">Nombre de livres empruntés</label>
+                <input type="text" class="form-control" name="nbr_livresempr" id="nbr_livresempr">
             </div>
             <div class="form-group">
             <input type="submit" class="btn btn-info" value="Ajouter">

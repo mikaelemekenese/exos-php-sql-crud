@@ -12,7 +12,14 @@
 			$disponible = isset($_POST['disponible']) ? htmlspecialchars($_POST['disponible']) : '';
 			$id_rayon = isset($_POST['id_rayon']) ? htmlspecialchars($_POST['id_rayon']) : '';
 
-            $pdo_stmt = $pdo->prepare('UPDATE livre SET id = ?, titre = ?, auteur = ?, disponible = ?, id_rayon = ? WHERE id = ?');
+            $pdo_stmt = $pdo->prepare(' UPDATE  livre 
+                                        SET     id = ?, 
+                                                titre = ?, 
+                                                auteur = ?, 
+                                                disponible = ?, 
+                                                id_rayon = ? 
+                                        WHERE   id = ?');
+
             $pdo_stmt->execute([$id, $titre, $auteur, $disponible, $id_rayon, $id]);
             $msg = 'Edité avec succès !';
 
@@ -60,7 +67,7 @@
                         if ($pdo_stmt = $pdo->query($sql)) {
                             while ($rayons = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC)) {
                                 foreach ($rayons as $rayon) :
-                                    echo "<option class=\"form-control\" value=\"".$livre['id_rayon']."\">".$rayon['id']." - ".$rayon['nom']."</option>";
+                                    echo "<option class=\"form-control\" value=\"".$rayon['id']."\">".$rayon['id']." - ".$rayon['nom']."</option>";
                                 endforeach;
                             }
                         }

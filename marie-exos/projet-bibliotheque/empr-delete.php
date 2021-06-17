@@ -18,7 +18,7 @@
 			if ($_GET['confirm'] == 'yes') {
 				$pdo_stmt = $pdo->prepare('DELETE FROM emprunt WHERE id = ?');
 				$pdo_stmt->execute([$_GET['id']]);
-				$msg = 'Ouvrage supprimé !';
+				$msg = 'Emprunt supprimé !';
 			} else {
 				header('Location: empr-read.php');
 				exit;

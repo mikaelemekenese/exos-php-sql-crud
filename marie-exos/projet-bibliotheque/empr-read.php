@@ -3,7 +3,18 @@
 
     $pdo = pdo_connect_mysql();
 
-    $pdo_stmt = $pdo->prepare('SELECT emprunt.id, livre.titre, adherent.prenom, adherent.nom, emprunt.date_emprunt, emprunt.date_retourmax, emprunt.date_retour FROM emprunt JOIN livre ON emprunt.id_livre = livre.id JOIN adherent ON emprunt.id_adherent = adherent.id');
+    $pdo_stmt = $pdo->prepare(' SELECT  emprunt.id, 
+                                        livre.titre, 
+                                        adherent.prenom, 
+                                        adherent.nom, 
+                                        emprunt.date_emprunt, 
+                                        emprunt.date_retourmax, 
+                                        emprunt.date_retour 
+                                FROM    emprunt 
+                                JOIN    livre 
+                                ON      emprunt.id_livre = livre.id 
+                                JOIN    adherent 
+                                ON      emprunt.id_adherent = adherent.id');
     $pdo_stmt->execute();
 
     $emprunts = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);

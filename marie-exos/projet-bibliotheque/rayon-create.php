@@ -8,10 +8,9 @@
 
         $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
 		$nom = isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : '';
-		$prenom = isset($_POST['reference']) ? htmlspecialchars($_POST['reference']) : '';
+		$reference = isset($_POST['reference']) ? htmlspecialchars($_POST['reference']) : '';
 
-		$pdo_stmt = $pdo->prepare('	INSERT INTO rayon
-									VALUES 	(?, ?, ?)');
+		$pdo_stmt = $pdo->prepare('INSERT INTO rayon VALUES (?, ?, ?)');
 									
 		$pdo_stmt->execute([$id, $nom, $reference]);
         $msg = 'Ajouté avec succès !';
@@ -21,7 +20,7 @@
 	}
 ?>
 
-<?php echo template_header('Create'); ?>
+<?php echo template_header('Rayon/Create'); ?>
 
 	<div class="content create">
         <h2>Ajouter un nouveau rayon à la bibliotheque :</h2>
@@ -32,7 +31,7 @@
                 <input type="text" class="form-control" name="nom" id="nom">
             </div>
             <div class="form-group">
-                <label for="prenom">Référence</label>
+                <label for="reference">Référence</label>
                 <input type="text" class="form-control" name="reference" id="reference">
             </div>
             <div class="form-group">

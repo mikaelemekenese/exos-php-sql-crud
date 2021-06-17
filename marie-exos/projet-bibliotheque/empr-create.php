@@ -25,7 +25,7 @@
 	}
 ?>
 
-<?php echo template_header('Create'); ?>
+<?php echo template_header('Empr/Create'); ?>
 
 	<div class="content create">
         <h2>Ajouter un nouvel emprunt :</h2>
