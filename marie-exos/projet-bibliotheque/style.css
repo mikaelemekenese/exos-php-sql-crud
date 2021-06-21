@@ -229,3 +229,8 @@ footer p {
 .delete .yesno a:hover {
   background-color: #32a367;
 } */
+.connected {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}

@@ -1,7 +1,12 @@
 <?php
 include 'functions_custom.php';
-// Your PHP code here.
-// Home Page template below.
+
+session_start();
+
+if (isset($_SESSION['nom_utilisateur']) && isset($_SESSION['mdp'])) {
+	$mdp = $_SESSION['mdp'];
+    echo "<div class='connected'>Connecté en tant que ". $login = $_SESSION['nom_utilisateur'] ."</div>";
+}
 ?>
 
 <?php echo template_header('Home'); ?>
