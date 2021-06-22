@@ -41,7 +41,7 @@ if (isset($_POST['nom_utilisateur']) && isset($_POST['mdp'])) {
             }
             else { ?>
                 <p>Vous n'avez pas été reconnu(e)</p>
-                <p><a href="login.php">Nouvel essai</p>
+                <p><a href="user-login.php">Nouvel essai</p>
             <?php } ?>
         </div>
 

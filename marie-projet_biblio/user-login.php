@@ -1,57 +1,49 @@
 <?php
-  include 'functions_custom.php';
+    include 'functions_custom.php';
 
-  $pdo = pdo_connect_mysql();
-  
-  define('LOGIN','');
-  define('PASSWORD','');
-  $errorMessage = '';
- 
-  if(!empty($_POST)) {
+    $pdo = pdo_connect_mysql();
 
-    if(!empty($_POST['nom_utilisateur']) && !empty($_POST['mdp'])) {
+    session_start();
 
-      if($_POST['nom_utilisateur'] !== LOGIN) {
-        $errorMessage = 'Mauvais nom d\'utilisateur !';
-
-      } elseif($_POST['mdp'] !== PASSWORD) {
-        $errorMessage = 'Mauvais mot de passe !';
-
-      } else {
-        session_start();
-        $_SESSION['nom_utilisateur'] = LOGIN
-        header('Location: admin-login.php');
-        exit();
-      }
-    } else {
-      $errorMessage = 'Veuillez inscrire vos identifiants svp !';
+    if (isset($_SESSION['nom_utilisateur']) && isset($_SESSION['mdp'])) {
+        $mdp = $_SESSION['mdp'];
+        echo "<div class='connected'>Connecté en tant que ". $login = $_SESSION['nom_utilisateur'] ."</div>";
+        echo "<style>#connected { display:none; }</style>";
     }
-  }
+
+        $pdo = pdo_connect_mysql();
+        $msg = '';
 ?>
 
-<?php echo template_header('Livre/Read'); ?>
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Connexion</title>
+    </head>
 
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-      <fieldset>
-        <legend>Identifiez-vous</legend>
-        <?php
-          // Rencontre-t-on une erreur ?
-          if(!empty($errorMessage)) 
-          {
-            echo '<p>', htmlspecialchars($errorMessage) ,'</p>';
-          }
-        ?>
-       <p>
-          <label for="login">Login :</label> 
-          <input type="text" name="login" id="login" value="" />
-        </p>
-        <p>
-          <label for="password">Password :</label> 
-          <input type="password" name="password" id="password" value="" /> 
-          <input type="submit" name="submit" value="Se logguer" />
-        </p>
-      </fieldset>
-    </form>
+    <body>
+        <?php 
+        echo template_header('Connexion'); ?>
 
-<?php echo template_footer(); ?>
+        <div class="container">
+            <h1 style="margin-top:50px;margin-bottom:20px;">Connexion</h1>
 
+            <form class="form" action="user-login-post.php" method="post" style="width:400px;">
+                <div class="form-group">
+                    <label for="nom">Nom d'utilisateur :</label>
+                    <input type="text" class="form-control" name="nom_utilisateur" id="nom" required />
+                </div>
+                <div class="form-group">
+                    <label for="mdp">Mot de passe :</label>
+                    <input type="password" class="form-control" name="mdp" id="mdp" required />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Connexion">
+                </div>
+            </form>
+        </div>
+    
+        <?php echo template_footer(); ?>
+    </body>
+</html>
