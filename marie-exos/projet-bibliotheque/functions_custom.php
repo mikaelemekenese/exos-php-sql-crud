@@ -34,7 +34,7 @@ function template_header($title) {
           <a href="livre-read.php"><i class="fas fa-book"></i>Bibliothèque</a>
           <a href="empr-read.php"><i class="fas fa-book-reader"></i>Emprunts</a>
           <a href="rayon-read.php"><i class="fas fa-database"></i>Rayons</a>
-          <a href="login.php"><i class="fas fa-user"></i>Connexion</a>
+          <a id="connected" href="login.php"><i class="fas fa-user"></i>Connexion</a>
           <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>
         </div>
       </nav>
