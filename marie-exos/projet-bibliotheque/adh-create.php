@@ -1,8 +1,15 @@
 <?php
 	include 'functions_custom.php';
 
-	$pdo = pdo_connect_mysql();
-    $msg = '';
+    session_start();
+
+    if (isset($_SESSION['nom_utilisateur']) && isset($_SESSION['mdp'])) {
+        $mdp = $_SESSION['mdp'];
+        echo "<div class='connected'>Connecté en tant que ". $login = $_SESSION['nom_utilisateur'] ."</div>";
+    }
+
+        $pdo = pdo_connect_mysql();
+        $msg = '';
 
 	if (!empty($_POST)) {
 

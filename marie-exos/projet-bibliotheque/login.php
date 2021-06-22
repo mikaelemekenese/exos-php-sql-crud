@@ -1,3 +1,19 @@
+<?php
+    include 'functions_custom.php';
+
+    $pdo = pdo_connect_mysql();
+
+    session_start();
+
+        if (isset($_SESSION['nom_utilisateur']) && isset($_SESSION['mdp'])) {
+            $mdp = $_SESSION['mdp'];
+            echo "<div class='connected'>Connecté en tant que ". $login = $_SESSION['nom_utilisateur'] ."</div>";
+        }
+
+            $pdo = pdo_connect_mysql();
+            $msg = '';
+?>
+
 <!doctype html>
 <html>
 
@@ -8,8 +24,6 @@
 
 <body>
     <?php 
-    include 'functions_custom.php';
-
     echo template_header('Connexion'); ?>
 
     <div class="container">
