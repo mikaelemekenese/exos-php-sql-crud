@@ -9,6 +9,8 @@
         $mdp = $_SESSION['mdp'];
         echo "<div class='connected'>Connecté en tant que ". $login = $_SESSION['nom_utilisateur'] ."</div>";
         echo "<style>#connected { display:none; }</style>";
+    } else {
+        echo "<style>#logout { display:none; }</style>";
     }
 
         $pdo = pdo_connect_mysql();
