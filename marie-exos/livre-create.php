@@ -45,31 +45,30 @@
 
         <form action="livre-create.php" method="POST">
             <div class="form-group">
-                <label for="name">Titre</label>
+                <label for="titre">Titre</label>
                 <input type="text" class="form-control" name="titre" id="titre">
             </div>
             <div class="form-group">
-                <label for="name">Auteur</label>
+                <label for="auteur">Auteur</label>
                 <input type="text" class="form-control" name="auteur" id="auteur">
             </div>
             <div class="form-group">
-                <label for="email">Disponible</label>
-                <input type="text" class="form-control" name="disponible" id="disponible">
+                <label for="disponible">Disponible</label>
+                <input type="number" class="form-control" name="disponible" id="disponible">
             </div>
             <div class="form-group">
-                <label for="phone">Rayon</label>
-                <input type="text" class="form-control" name="id_rayon" id="id_rayon">
-                <!-- <select class="custom-select" style="width:400px;display:block;">
+                <label for="id_rayon">Rayon</label>
+                <select class="custom-select" id="id_rayon" name="id_rayon" style="width:400px;display:block;">
                     <?php
                         $pdo_stmt = $pdo->prepare('SELECT rayon.id, rayon.nom FROM rayon');
 
                         $pdo_stmt->execute();
                         while ($rayons = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC))
                             foreach ($rayons as $rayon) :
-                                echo "<option value=\"".$rayon['id']."\">".$rayon['id']." - ".$rayon['nom']."</option>";
+                                echo "<option value=\"". $rayon['id'] ."\">". $rayon['id'] ." - ". $rayon['nom'] ."</option>";
                             endforeach;
                     ?>
-                </select> -->
+                </select>
             </div>
             <div class="form-group">
             <input type="submit" class="btn btn-info" value="Ajouter">

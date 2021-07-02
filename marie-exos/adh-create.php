@@ -47,10 +47,6 @@
                 <input type="text" class="form-control" name="prenom" id="prenom">
             </div>
             <div class="form-group">
-                <label for="nbr_livresempr">Nombre de livres empruntés</label>
-                <input type="text" class="form-control" name="nbr_livresempr" id="nbr_livresempr">
-            </div>
-            <div class="form-group">
             <input type="submit" class="btn btn-info" value="Ajouter">
             </div>
         </form>

@@ -45,7 +45,19 @@ $adherents = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo $adherent["id"] ?></td>
                 <td><?php echo $adherent["nom"] ?></td>
                 <td><?php echo $adherent["prenom"] ?></td>
-                <td><?php echo $adherent["nbr_livresempr"] ?></td>
+                <td>
+                    <?php 
+                        $pdo_stmt = $pdo->prepare('SELECT id, id_adherent, COUNT(*) AS nbr_livres FROM emprunt GROUP BY id_adherent');
+                        $pdo_stmt->execute();
+
+                        while ($livres = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC))
+                            foreach ($livres as $livre) :
+                                if ($livre['id_adherent'] == $adherent["id"]) : echo $livre['nbr_livres'];
+                                else : echo '0';
+                                endif;
+                            endforeach;
+                    ?>
+                </td>
                 <td class="actions">
                     <a href="adh-update.php?id=<?php echo $adherent["id"] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
                     <a href="adh-delete.php?id=<?php echo $adherent["id"] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>

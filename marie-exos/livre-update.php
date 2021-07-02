@@ -60,21 +60,20 @@
 
         <form action="livre-update.php?id=<?php echo $livre["id"] ?>" method="POST" style="display:block">
             <div class="form-group">
-                <label for="name">Titre</label>
+                <label for="titre">Titre</label>
                 <input type="text" class="form-control" name="titre" value="<?php echo $livre['titre'] ?>" id="titre">
             </div>
             <div class="form-group">
-                <label for="name">Auteur</label>
+                <label for="auteur">Auteur</label>
                 <input type="text" class="form-control" name="auteur" value="<?php echo $livre['auteur'] ?>" id="auteur">
             </div>
             <div class="form-group">
-                <label for="email">Disponible</label>
+                <label for="disponible">Disponible</label>
                 <input type="text" class="form-control" name="disponible" value="<?php echo $livre['disponible'] ?>" id="disponible">
             </div>
             <div class="form-group">
-                <label for="phone">Rayon</label>
-                <input type="text" class="form-control" name="id_rayon" value="<?php echo $livre['id_rayon'] ?>" id="id_rayon">
-                <!-- <select class="custom-select" name="rayon" style="width:400px;display:block;">
+                <label for="id_rayon">Rayon</label>
+                <select class="custom-select" id="id_rayon" name="id_rayon" style="width:400px;display:block;">
                     <?php
                         $sql = "SELECT rayon.id, rayon.nom FROM rayon";
                         if ($pdo_stmt = $pdo->query($sql)) {
@@ -85,7 +84,7 @@
                             }
                         }
                     ?>
-                </select> -->
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Update">
