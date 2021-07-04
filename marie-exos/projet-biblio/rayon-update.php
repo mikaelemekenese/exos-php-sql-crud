@@ -47,7 +47,7 @@
 
         <form action="rayon-update.php?id=<?php echo $rayon["id"] ?>" method="POST" style="display:block">
             <div class="form-group">
-                <label for="name">Nom</label>
+                <label for="nom">Nom</label>
                 <input type="text" class="form-control" name="nom" value="<?php echo $rayon['nom']?>" id="nom">
             </div>
             <div class="form-group">

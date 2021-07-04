@@ -63,11 +63,35 @@
         <form action="empr-update.php?id=<?php echo $emprunt["id"] ?>" method="POST">
             <div class="form-group">
                 <label for="id_livre">Livre</label>
-                <input type="text" class="form-control" name="id_livre" id="id_livre" value="<?php echo $emprunt['id_livre'] ?>">
+                <select name="id_livre" class="custom-select" id="id_livre" style="width:400px;display:block;">
+                    <?php
+                        $pdo_stmt = $pdo->prepare('SELECT livre.id, livre.titre, livre.auteur, livre.disponible FROM livre');
+
+                        $pdo_stmt->execute();
+                        while ($livres = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC))
+                            foreach ($livres as $livre) :
+                                if ($livre['disponible'] == 1) :
+                                    echo "<option value=\"".$livre['id']."\">".$livre['id']." - ".$livre['titre']." (".$livre['auteur'].")</option>";
+                                endif;
+                            endforeach;
+                    ?>
+                </select>
             </div>
             <div class="form-group">
                 <label for="id_adherent">Adhérent</label>
-                <input type="text" class="form-control" name="id_adherent" id="id_adherent" value="<?php echo $emprunt['id_adherent'] ?>">
+                <select name="id_adherent" class="custom-select" id="id_adherent" style="width:400px;display:block;">
+                    <?php
+                        $pdo_stmt = $pdo->prepare('SELECT adherent.id, adherent.prenom, adherent.nom FROM adherent');
+
+                        $pdo_stmt->execute();
+                        while ($adherents = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC))
+                            foreach ($adherents as $adherent) :
+                                if ($adherent['nbr_livresempr'] < 5) :
+                                    echo "<option value='".$adherent['id']."'>".$adherent['id']." - ".$adherent['prenom']." ".$adherent['nom']."</option>";
+                                endif;
+                            endforeach;
+                    ?>
+                </select>
             </div>
             <div class="form-group">
                 <label for="date_emprunt">Date d'emprunt</label>

@@ -68,7 +68,22 @@
             </div>
             <div class="form-group">
                 <label for="nbr_livresempr">Nombre de livres empruntés</label>
-                <input type="text" class="form-control" name="nbr_livresempr" value="<?php echo $adherent['nbr_livresempr'] ?>" id="nbr_livresempr">
+
+                <?php 
+                        $pdo_stmt = $pdo->prepare('SELECT adherent.id, emprunt.date_retour, emprunt.id_adherent, COUNT(*) AS nbr_livres FROM emprunt LEFT JOIN adherent ON adherent.id = emprunt.id_adherent');
+                        $pdo_stmt->execute();
+
+                        while ($livres = $pdo_stmt->fetchAll(PDO::FETCH_ASSOC))
+                            foreach ($livres as $livre) :
+                                if ($livre['id_adherent'] == $adherent["id"]) : 
+                                    echo "<input type='text' class='form-control' name='nbr_livresempr' id='nbr_livresempr' value='". $livre['nbr_livres'] ."' readonly>";
+                                else :
+                                    echo "<input type='text' class='form-control' name='nbr_livresempr' id='nbr_livresempr' value='0' readonly>";
+                                endif;
+                            endforeach;
+                    ?>
+
+                <!--  <input type="text" class="form-control" name="nbr_livresempr" value="<?php echo $adherent['nbr_livresempr'] ?>" id="nbr_livresempr"> -->
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Update">
