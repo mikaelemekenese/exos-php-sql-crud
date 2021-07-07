@@ -43,3 +43,29 @@ while ($donnees = $request->fetch(PDO::FETCH_ASSOC)) { // Chaque entrée sera r�
     echo " d'expérience et est au niveau ".$perso->niveau();
     echo "<br>";
 }
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+function chargerClasse($classname) {
+    require $classname.'.php';
+}
+
+spl_autoload_register('chargerClasse');
+
+try {
+    $db = new PDO('mysql:host=localhost;dbname=init_poo', 'root', '');
+}
+catch (Exception $e) {
+    die("Erreur ! ".$e->getMessage());
+}
+
+$manager = new PersonnagesManager($db);
+
+$persos = $manager->getList();
+
+foreach($persos as $unPerso) {
+    echo $unPerso->nom()." a ".$unPerso->forcePerso()." de force, ".$unPerso->degats()." de dégâts, ".$unPerso->experience();
+    echo " d'expérience et est au niveau ".$unPerso->niveau();
+    echo "<br>";
+}
