@@ -64,9 +64,9 @@ class Adherent {
         }
     }
 
-    public function setNbrLivresEmpr($nbr_livresempr) {
+    public function setNbr_LivresEmpr($nbr_livresempr) {
         $nbr_livresempr = (int) $nbr_livresempr;
-        if ($nbr_livresempr >= 1 && $nbr_livresempr <= 5) {
+        if ($nbr_livresempr >= 0 && $nbr_livresempr <= 5) {
             $this->_nbr_livresempr = $nbr_livresempr;
         }
     }

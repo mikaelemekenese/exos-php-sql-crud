@@ -30,10 +30,10 @@ function template_header($title) {
         <div style="width:auto;">
           <a href="index.php" style="padding-left:20px;"><h1>Bibliothèque</h1></a>
           <a href="index.php"><i class="fas fa-home"></i>Accueil</a>
-          <a href="adh-read.php"><i class="fas fa-address-book"></i>Adhérents</a>
-          <a href="livre-read.php"><i class="fas fa-book"></i>Bibliothèque</a>
-          <a href="empr-read.php"><i class="fas fa-book-reader"></i>Emprunts</a>
-          <a href="rayon-read.php"><i class="fas fa-database"></i>Rayons</a>
+          <a href="Adherent.php"><i class="fas fa-address-book"></i>Adhérents</a>
+          <a href="Livre.php"><i class="fas fa-book"></i>Bibliothèque</a>
+          <a href="Emprunt.php"><i class="fas fa-book-reader"></i>Emprunts</a>
+          <a href="Rayon.php"><i class="fas fa-database"></i>Rayons</a>
           <a id="connected" href="user-login.php"><i class="fas fa-user"></i>Connexion</a>
           <a id="logout" href="user-logout.php"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>
         </div>
