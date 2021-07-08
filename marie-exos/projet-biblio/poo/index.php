@@ -1,5 +1,4 @@
 <?php
-
     include 'functions_custom.php';
 
     try {
@@ -14,7 +13,6 @@
 <?php echo template_header('Read'); ?>
 
 <?php
-
     require "Adherent.php";
 
     // On admet que $db est un objet PDO
@@ -57,6 +55,5 @@
             </table>
     </div>"; 
 ?>
-
 
 <?php echo template_footer(); ?>
