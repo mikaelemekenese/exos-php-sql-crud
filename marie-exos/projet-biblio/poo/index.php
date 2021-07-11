@@ -1,59 +1,36 @@
 <?php
     include 'functions_custom.php';
 
-    try {
-        $db = new PDO("mysql:host=localhost;dbname=bibliotheque",'root','');
-    } 
-
-    catch (Exception $e) {
-        die("Erreur : ".$e->getMessage());
-    }
+    $db = pdo_connect_mysql();
 ?>
 
-<?php echo template_header('Read'); ?>
+<?php echo template_header_main('Index'); ?>
 
-<?php
-    require "Adherent.php";
+<div class="container">
+	<br><h1 style="padding-top:5px;text-align:center;color:grey;">Accueil</h1><br>
 
-    // On admet que $db est un objet PDO
-    $request = $db->query('SELECT id, nom, prenom, nbr_livresempr FROM adherent');
-
-    echo  "
-
-    <div class='content read'>
-        <div><h2>Liste des adhérents de la bibliotheque</h2> 
-        <span><a href='adh-create.php' class='add'><i class='fas fa-plus-square fa-xs'></i></a></span></div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>#</td>
-                        <td>Nom</td>
-                        <td>Prénom</td>
-                        <td>Nombre de livres empruntés</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>";
-
-    while ($donnees = $request->fetch(PDO::FETCH_ASSOC)) {
-
-        $adherent = new Adherent($donnees);
-
-        echo        "<tr>
-                        <td>" .$adherent->id(). "</td>
-                        <td>" .$adherent->nom(). "</td>
-                        <td>" .$adherent->prenom(). "</td>
-                        <td>" .$adherent->nbr_livresempr(). "</td>
-                        <td class='actions'>
-                            <a href='adh-update.php?id=" .$adherent->id(). "' class='edit'><i class='fas fa-pen fa-xs'></i></a>
-                            <a href='adh-delete.php?id=" .$adherent->id(). "' class='trash'><i class='fas fa-trash fa-xs'></i></a>
-                        </td>     
-                    </tr>";
-    }
-
-    echo "      </tbody>
-            </table>
-    </div>"; 
-?>
+	<br><div class="home-buttons">
+		<div class="home-livre">
+			<i class="fas fa-book fa-2x"><br><h3>Catalogue</h3></i><br><br>
+			<a type="button" class="btn btn-info" href="Livre/index.php"><h5>Consulter la liste des livres</h5></a><br>
+			<a type="button" class="btn btn-success" href="#"><h5>Ajouter un livre</h5></a>
+		</div>
+		<div class="home-adh">
+			<i class="fas fa-address-book fa-2x"><br><h3>Adhérents</h3></i><br><br>
+			<a type="button" class="btn btn-info" href="Adherent/index.php"><h5>Je recherche un adhérent</h5></a><br>
+			<a type="button" class="btn btn-success" href="#"><h5>Ajouter un nouvel adhérent</h5></a>
+		</div>
+		<div class="home-empr">
+			<i class="fas fa-book-reader fa-2x"><br><h3>Emprunts</h3></i><br><br>
+			<a type="button" class="btn btn-info" href="Emprunt/index.php"><h5>Consulter les emprunts</h5></a><br>
+			<a type="button" class="btn btn-success" href="#"><h5>Emprunter</h5></a>
+		</div>
+		<div class="home-rayon">
+			<i class="fas fa-database fa-2x"><br><h3>Rayons</h3></i><br><br>
+			<a type="button" class="btn btn-info" href="Rayon/index.php"><h5>Les rayons de la Bibliothèque</h5></a><br>
+			<a type="button" class="btn btn-success" href="#"><h5>Ajouter un nouveau rayon</h5></a>
+		</div>
+	</div>
+</div>
 
 <?php echo template_footer(); ?>
