@@ -1,6 +1,6 @@
 <?php
 
-class Emprunt {
+class Livre {
 
     // Attributs de notre classe
 

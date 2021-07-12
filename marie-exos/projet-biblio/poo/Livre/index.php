@@ -33,7 +33,7 @@
 
     while ($donnees = $request->fetch(PDO::FETCH_ASSOC)) {
 
-        $livre = new Emprunt($donnees);
+        $livre = new Livre($donnees);
 
         echo        "<tr>
                         <td>" .$livre->id(). "</td>
