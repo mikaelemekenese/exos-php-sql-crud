@@ -1,7 +1,32 @@
 <?php
 
+require_once('CRUD.php');
+
+class Comment extends Database implements CRUD {
+    public static function create($params) {
+
+    }
+
+    public static function read($id) {
+
+    }
+
+    public static function update($id, $params) {
+
+    }
+
+    public static function delete($id) {
+
+    }
+}
+
 class Shelf extends Database {
-    // public static $table = 'shelves';
+    public static function create($params) {
+        $shelf = self::query('INSERT INTO rayon (nom, reference) VALUES (:nom, :reference)', $params);
+        return $shelf;
+    }
+
+    
 
     /*
      * Get the shelves

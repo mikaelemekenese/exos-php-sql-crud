@@ -1,17 +1,42 @@
 <?php
 
-$array = [
-    'name' => 'Joe',
-    'age' => 9,
-];
+public static function getAll() {
+    return self::query("SELECT * FROM " . static::$table);
+}
 
-$columns = array_keys($array);
+public static function findById($id) {
+    return self::query("SELECT * FROM " . static::$table . " WHERE id=$id LIMIT 1");
+}
 
-$query = array_reduce($columns, function($prev, $next) {
-    $str = $next . ':' . $next;
-    return $prev . ($prev ? ', ' : '') . $str;
-}, '');
+public static function where($column, $value) {
+    return self::query("SELECT * FROM " . static::$table . " WHERE " . $column . "=" . $value);
+}
 
-echo 'VALUES(' . $query . ')'; // VALUES(name:name, age:age)
+public static function create($params) {
+    $columns = array_keys($params);
+    $queries = array_reduce($columns, function($prev, $next) {
+        return $prev . ($prev ? ', ' : '') . $next;
+    }, '');
+    $values = array_reduce($columns, function($prev, $next) {
+        return $prev . ($prev ? ', ' : '') . ':' . $next;
+    }, '');
+    return self::query("INSERT INTO " . static::$table . " ($queries) VALUES($values)", $params);
+}
 
+public function update($params) {
+    $queries = array_reduce($columns, function($prev, $next, $index) {
+        echo $index;
+        return $prev . ($prev ? ', ' : '') . $next;
+    }, '');
 
+    die();
+    return $this->query("UPDATE ". static::$table . " SET $queries WHERE id=" . $this->id, $params);
+}
+
+public function delete() {
+    return $this->query("DELETE FROM " . static::$table . " WHERE id=" . $this->id);
+}
+
+public static function buildColumns($params) {
+    
+}

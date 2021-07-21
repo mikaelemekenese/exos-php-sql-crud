@@ -1,4 +1,6 @@
-<?php require './partials/header.php'; ?>
+<?php require('./classes/CRUD.php') ?>
+<?php require('./classes/database.php') ?>
+<?php require('./partials/header.php') ?>
 
 <?php $books = Book::all(); foreach($books as $book) : ?> 
     <ul style="margin-bottom:0;">
